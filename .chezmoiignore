@@ -1,0 +1,4 @@
+{{ if ne .chezmoi.os "windows" }}
+OneDrive/Dokumente/PowerShell/Microsoft.PowerShell_profile.ps1
+OneDrive/Dokumente/WindowsPowerShell/Microsoft.PowerShell_profile.ps1
+{{ end }}
