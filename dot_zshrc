@@ -1,3 +1,10 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -114,3 +121,14 @@ PERL_LOCAL_LIB_ROOT="/Users/franz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_
 PERL_MB_OPT="--install_base \"/Users/franz/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/franz/perl5"; export PERL_MM_OPT;
 test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm2_shell_integration.zsh || true
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/franz/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Initialize oh-my-posh
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh)"
+fi
