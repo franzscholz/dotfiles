@@ -1,8 +1,9 @@
-# Environment
-Configuration files for my working environment
+# dotfiles
+Configuration files (using chezmoi) for my working environment.
 
 Contains:
 
+* Various shell configuration files.
 * `Brewfile` with a list of the necessary packages for Homebrew.
 
 # Common Setup
