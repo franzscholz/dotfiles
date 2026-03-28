@@ -23,6 +23,9 @@ exec zsh
 
 ## Install chezmoi
 
+Create a ssh key on the target system and add it to the Github ssh key list.
+Or use https for accessing the git repository instead of ssh.
+
 ```[shell]
 brew install chezmoi
 chezmoi init git@github.com:franzscholz/dotfiles.git
