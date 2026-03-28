@@ -12,6 +12,7 @@ Contains:
 
 ```[shell]
 chsh zsh
+exec zsh
 ```
 
 ## Install `Homebrew` on MacOS
@@ -27,7 +28,7 @@ brew install chezmoi
 chezmoi init git@github.com:franzscholz/dotfiles.git
 chezmoi diff
 chezmoi apply -v
-source $HOME/.zshrc
+exec zsh
 ```
 
 ## Install packages
