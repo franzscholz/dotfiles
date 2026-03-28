@@ -15,6 +15,12 @@ chsh zsh
 exec zsh
 ```
 
+## Setup oh-my-zsh
+
+```[shell]
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 ## Install `Homebrew` on MacOS
 
 ```[shell]
