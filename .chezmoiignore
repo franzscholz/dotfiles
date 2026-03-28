@@ -1,5 +1,6 @@
 LICENSE
 README.md
+Makefile
 {{ if ne .chezmoi.os "windows" }}
 OneDrive
 OneDrive/Dokumente
