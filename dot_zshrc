@@ -62,6 +62,17 @@ export PATH="$PATH:$HOME/.local/bin"
 # iterm2 integration
 test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm2_shell_integration.zsh || true
 
+# Detect if this is a Visual Studio Code remote connection
+# and use Visual Studio Code as the editor if this is the
+# case.
+# export EDITOR=vi
+if [ ! -z "${VSCODE_IPC_HOOK_CLI}" ] ; then
+  export EDITOR="code --wait"
+fi
+
+# VS Code shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/franz/.zshrc'
 
