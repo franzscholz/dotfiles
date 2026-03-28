@@ -13,3 +13,9 @@ Brewfile:
 cleanup:
 	brew bundle cleanup --global --force
 
+# Install oh-my-posh nerdfont
+.PHONY: fonts
+fonts:
+	oh-my-posh font install FiraCode
+
+
