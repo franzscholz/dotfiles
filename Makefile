@@ -16,6 +16,10 @@ cleanup:
 # Install oh-my-posh nerdfont
 .PHONY: fonts
 fonts:
-	oh-my-posh font install FiraCode
+	if type brew ; then \
+ 		brew install font-fira-code-nerd-font ;\
+	else \
+		oh-my-posh font install FiraCode ;\
+	fi
 
 
