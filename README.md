@@ -1,10 +1,10 @@
 # dotfiles
-Configuration files (using chezmoi) for my working environment.
+Configuration files (using `chezmoi`) for my working environment.
 
 Contains:
 
 * Various shell configuration files.
-* `Brewfile` with a list of the necessary packages for Homebrew.
+* `Brewfile` with a list of the necessary packages for `Homebrew`.
 
 # Common Setup Notes
 
