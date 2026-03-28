@@ -80,6 +80,7 @@ fi
 # VS Code shell integration
 if [ "$TERM_PROGRAM" = "vscode" ] ; then
   source "$(code --locate-shell-integration-path zsh)"
+  export EDITOR="code --wait"
 fi
 
 # The following lines were added by compinstall
