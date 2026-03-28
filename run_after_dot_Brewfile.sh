@@ -3,6 +3,6 @@ set -x
 set -e
 brew update
 brew upgrade
-brew bundle
+brew bundle --global
 brew bundle cleanup --global --force
 

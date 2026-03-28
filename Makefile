@@ -6,7 +6,7 @@ all:
 # Update the Brewfile
 .PHONY: Brewfile
 Brewfile:
-	brew bundle dump --file=Brewfile --force
+	brew bundle dump --file=dot_Brewfile --force
 
 # Cleanup brew installed packages
 .PHONY: cleanup
