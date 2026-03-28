@@ -4,6 +4,7 @@ TODO.md
 Makefile
 vscode_settings.json
 Brewfile
+linux_packages.txt
 {{- if ne .chezmoi.os "linux" }}
 .config
 .config/Code
@@ -15,6 +16,10 @@ Brewfile
 .Brewfile.sh
 symlink_dot_Brewfile.tmpl
 run_after_dot_Brewfile.sh
+Library
+Library/Application Support
+Library/Application Support/Code
+Library/Application Support/Code/User
 Library/Application Support/Code/User/settings.json
 {{- end }}
 {{- if ne .chezmoi.os "windows" }}
