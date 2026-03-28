@@ -1,6 +1,7 @@
 LICENSE
 README.md
 Makefile
+vscode_settings.json
 {{ if ne .chezmoi.os "darwin" }}
 Brewfile
 run_after_Brewfile.sh
