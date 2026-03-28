@@ -19,4 +19,9 @@ OneDrive
 OneDrive/Dokumente
 OneDrive/Dokumente/PowerShell/Microsoft.PowerShell_profile.ps1
 OneDrive/Dokumente/WindowsPowerShell/Microsoft.PowerShell_profile.ps1
+AppData
+AppData/Roaming
+AppData/Roaming/Code
+AppData/Roaming/Code/User
+AppData/Roaming/Code/User/settings.json
 {{- end }}
