@@ -1,5 +1,5 @@
 # dotfiles
-Configuration files (using `chezmoi`) for my working environment.
+Configuration files (using [`chezmoi`](https://www.chezmoi.io)) for my working environment.
 
 Contains:
 
@@ -42,7 +42,7 @@ brew bundle install --global
 Setup should be as follows:
 
 * Use `zsh` on MacOS and Linux/Unix.
-* Use `oh-my-posh` in the shells.
+* Use [`oh-my-posh`](https://ohmyposh.dev) in the shells.
 * Use `Fira Code` with ligatures for all terminals and editors.
 * Use `FiraCode Nerd Font` in shells and Visual Studio Code for the `oh-my-posh` integration.
 * Use `IBM Plex` font family for writing.
