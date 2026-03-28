@@ -2,9 +2,10 @@ LICENSE
 README.md
 Makefile
 vscode_settings.json
-{{ if ne .chezmoi.os "darwin" }}
 Brewfile
-run_after_Brewfile.sh
+{{ if ne .chezmoi.os "darwin" }}
+symlink_dot_Brewfile.tmpl
+run_after_dot_BrewFile.sh
 Library/Application Support/Code/User/settings.json
 {{ end }}
 {{ if ne .chezmoi.os "windows" }}
