@@ -81,5 +81,6 @@
         "editor.defaultFormatter": "James-Yu.latex-workshop"
     },
     "files.autoSave": "afterDelay",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "go.toolsManagement.autoUpdate": true
 }
