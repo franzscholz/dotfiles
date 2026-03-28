@@ -82,5 +82,6 @@
     },
     "files.autoSave": "afterDelay",
     "workbench.startupEditor": "none",
-    "go.toolsManagement.autoUpdate": true
+    "go.toolsManagement.autoUpdate": true,
+    "git.confirmSync": false
 }
