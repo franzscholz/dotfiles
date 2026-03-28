@@ -10,11 +10,11 @@ Contains:
 
 Setup should be as follows:
 
-* Use 'zsh' on MacOS and Linux/Unix.
-* Use 'oh-my-posh' in the shells.
-* Use 'Fira Code' with ligatures for all terminals and editors.
-* Use 'FiraCode Nerd Font' in shells and Visual Studio Code for the 'oh-my-posh' integration.
-* Use 'IBM Plex' font family for writing.
-* Install common software with 'Homebrew' on MacOS (see 'Brewfile').
+* Use `zsh` on MacOS and Linux/Unix.
+* Use `oh-my-posh` in the shells.
+* Use `Fira Code` with ligatures for all terminals and editors.
+* Use `FiraCode Nerd Font` in shells and Visual Studio Code for the `oh-my-posh` integration.
+* Use `IBM Plex` font family for writing.
+* Install common software with `Homebrew` on MacOS (see `Brewfile`).
 * Install Latex + templates from GIT for writing. This is in another repo.
 
