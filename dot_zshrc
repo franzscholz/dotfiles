@@ -56,6 +56,9 @@ fi
 GEM_HOME="$HOME/gems" ; export GEM_HOME ;
 PATH="$GEM_HOME/bin:$PATH" ; export PATH ; 
 
+# pipx installations
+export PATH="$PATH:$HOME/.local/bin"
+
 # iterm2 integration
 test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm2_shell_integration.zsh || true
 
