@@ -1,7 +1,6 @@
 LICENSE
 README.md
 Makefile
-install.sh
 {{ if ne .chezmoi.os "windows" }}
 OneDrive
 OneDrive/Dokumente
