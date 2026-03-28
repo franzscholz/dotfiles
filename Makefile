@@ -5,11 +5,9 @@ all:
 
 .PHONY: Brewfile
 Brewfile:
-	$(RM) Brewfile
-	brew bundle dump --file=$(PWD)/Brewfile
+	brew bundle dump --global --force
 
 .PHONY: cleanup
 cleanup:
-	
-	brew bundle cleanup --file=$(PWD)/Brewfile --force
+	brew bundle cleanup --global --force
 
