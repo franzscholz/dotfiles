@@ -1,6 +1,9 @@
 LICENSE
 README.md
 Makefile
+{{ if ne .chezmoi.os "darwin" }}
+Library/Application Support/Code/User/settings.json
+{{ end }}
 {{ if ne .chezmoi.os "windows" }}
 OneDrive
 OneDrive/Dokumente
