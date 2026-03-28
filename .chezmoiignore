@@ -3,14 +3,20 @@ README.md
 Makefile
 vscode_settings.json
 Brewfile
-{{ if ne .chezmoi.os "darwin" }}
+{{- if ne .chezmoi.os "linux" }}
+.config
+.config/Code
+.config/Code/User
+.config/Code/User/settings.json
+{{- end }}
+{{- if ne .chezmoi.os "darwin" }}
 symlink_dot_Brewfile.tmpl
 run_after_dot_BrewFile.sh
-Library/Application Support/Code/User/symlink_settings.json.tmpl
-{{ end }}
-{{ if ne .chezmoi.os "windows" }}
+Library/Application Support/Code/User/settings.json
+{{- end }}
+{{- if ne .chezmoi.os "windows" }}
 OneDrive
 OneDrive/Dokumente
 OneDrive/Dokumente/PowerShell/Microsoft.PowerShell_profile.ps1
 OneDrive/Dokumente/WindowsPowerShell/Microsoft.PowerShell_profile.ps1
-{{ end }}
+{{- end }}
