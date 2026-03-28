@@ -65,7 +65,7 @@ test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm
 # Detect if this is a Visual Studio Code remote connection
 # and use Visual Studio Code as the editor if this is the
 # case.
-# export EDITOR=vi
+export EDITOR=nano
 if [ ! -z "${VSCODE_IPC_HOOK_CLI}" ] ; then
   export EDITOR="code --wait"
 fi
