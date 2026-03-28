@@ -51,6 +51,7 @@ if [ -d ${HOME}/perl5 ]; then
   PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 fi
 
+# iterm2 integration
 test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm2_shell_integration.zsh || true
 
 # The following lines were added by compinstall
@@ -59,6 +60,7 @@ zstyle :compinstall filename '/home/franz/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
 # Initialize oh-my-posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh)"
