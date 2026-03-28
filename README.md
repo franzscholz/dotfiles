@@ -34,7 +34,7 @@ chezmoi apply -v
 exec zsh
 ```
 
-## Install packages
+## Install packages on MacOS using Homebrew
 
 ```[shell]
 brew bundle install --global
