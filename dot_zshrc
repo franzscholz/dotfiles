@@ -51,6 +51,11 @@ if [ -d ${HOME}/perl5 ]; then
   PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 fi
 
+
+# Install Ruby Gems to ~/gems
+GEM_HOME="$HOME/gems" ; export GEM_HOME ;
+PATH="$GEM_HOME/bin:$PATH" ; export PATH ; 
+
 # iterm2 integration
 test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm2_shell_integration.zsh || true
 
