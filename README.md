@@ -6,6 +6,36 @@ Contains:
 * Various shell configuration files.
 * `Brewfile` with a list of the necessary packages for `Homebrew`.
 
+# Setup
+
+## Change shell to `zsh`
+
+```[shell]
+chsh zsh
+```
+
+## Install `Homebrew` on MacOS
+
+```[shell]
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+## Install chezmoi
+
+```[shell]
+brew install chezmoi
+chezmoi init git@github.com:franzscholz/dotfiles.git
+chezmoi diff
+chezmoi apply -v
+source $HOME/.zshrc
+```
+
+## Install packages
+
+```[shell]
+brew bundle install --global
+```
+
 # Common Setup Notes
 
 Setup should be as follows:
