@@ -60,7 +60,7 @@ PATH="$GEM_HOME/bin:$PATH" ; export PATH ;
 export PATH="$PATH:$HOME/.local/bin"
 
 # iterm2 integration
-test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm2_shell_integration.zsh || true
+test "$TERM_PROGRAM" == "iTerm.app" && test -e /Users/franz/.iterm2_shell_integration.zsh && source /Users/franz/.iterm2_shell_integration.zsh || true
 
 # Detect if this is a Visual Studio Code remote connection
 # and use Visual Studio Code as the editor if this is the
