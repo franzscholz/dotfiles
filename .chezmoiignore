@@ -11,6 +11,8 @@ Brewfile
 .config/Code/User/settings.json
 {{- end }}
 {{- if ne .chezmoi.os "darwin" }}
+.Brewfile
+.Brewfile.sh
 symlink_dot_Brewfile.tmpl
 run_after_dot_Brewfile.sh
 Library/Application Support/Code/User/settings.json
