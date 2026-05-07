@@ -47,3 +47,5 @@
   (progn
     (message "Linux"))))
 
+;; Start emacs server
+(server-start)
