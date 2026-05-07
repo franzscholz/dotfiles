@@ -69,10 +69,26 @@ if [ "$TERM_PROGRAM" = "iTerm.app" ] ; then
   source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 
+# When emacs is installed use emacs as the editor
+if [ ! -z "$(which emacs)" ] ; then
+   if [ "$XDG_SESSION_TYPE" = "tty" ] ; then
+       export ALTERNATE_EDITOR=${EDITOR}
+       export EDITOR="$(which emacs) -nw"
+   elif [ "$XDG_SESSION_TYPE" = "wayland" ] ; then
+       export ALTERNATE_EDITOR="${EDITOR}"
+       export EDITOR="$(which emacsclient)"
+   elif [ "$XDG_SESSION_TYPE" = "x11" ] ; then
+       export ALTERNATE_EDITOR="${EDITOR}"
+       export EDITOR="$(which emacsclient)"
+   else
+       export ALTERNATE_EDITOR="${EDITOR}"
+       export EDITOR="$(which emacs)"
+   fi
+fi
+
 # Detect if this is a Visual Studio Code remote connection
 # and use Visual Studio Code as the editor if this is the
 # case.
-export EDITOR=nano
 if [ ! -z "${VSCODE_IPC_HOOK_CLI}" ] ; then
   export EDITOR="code --wait"
 fi
