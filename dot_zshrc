@@ -70,6 +70,9 @@ if [ "$TERM_PROGRAM" = "iTerm.app" ] ; then
 fi
 
 # When emacs is installed use emacs as the editor
+# Alternate method to start emacs in server mode
+# as the editor of choice:
+# export EDITOR='emacsclient -c -a ""'
 if [ ! -z "$(which emacs)" ] ; then
    if [ "$XDG_SESSION_TYPE" = "tty" ] ; then
        export ALTERNATE_EDITOR=${EDITOR}
