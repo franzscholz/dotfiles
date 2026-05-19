@@ -11,7 +11,7 @@ Contains:
 ## Change shell to `zsh`
 
 ```[shell]
-chsh zsh
+chsh -s $(which zsh) 
 exec zsh
 ```
 
@@ -44,6 +44,13 @@ exec zsh
 
 ```[shell]
 brew bundle install --global
+```
+
+## Install oh-my-posh
+
+```[shell]
+curl -s https://ohmyposh.dev/install.sh | bash -s
+exec zsh
 ```
 
 # Common Setup Notes
