@@ -41,6 +41,7 @@
     - name: Load matching packages
       include_vars:
         file: "{{ playbook_dir }}/vars/{{ distro }}_packages.yml"
+      when: distro in ['freebsd', 'ubuntu', 'debian', 'gentoo']
 
     - name: Show selected package manager and count
       debug:
@@ -49,13 +50,14 @@
           - "Distribution: {{ ansible_facts.distribution | default('unknown') }}"
           - "Package manager: {{ ansible_pkg_mgr | default('unknown') }}"
           - "Packages to ensure: {{ packages | default([]) | length }}"
+      when: distro in ['freebsd', 'ubuntu', 'debian', 'gentoo']
 
     - name: Ensure packages are present
       become: true
       package:
         name: "{{ packages }}"
         state: present
-      when: packages is defined and packages | length > 0
+      when: distro in ['freebsd', 'ubuntu', 'debian', 'gentoo'] and packages is defined and packages | length > 0
       tags: install
 
     - name: Find installed zsh

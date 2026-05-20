@@ -62,8 +62,7 @@ sudo pkg install py311-ansible chezmoi
 chezmoi init git@github.com:franzscholz/dotfiles.git
 chezmoi diff
 chezmoi apply -v
-chezmoi cd
-ansible-playbook ansible/setup.yml -K
+ansible-playbook $(chezmoi source-path)/ansible/setup.yml -K
 ```
 
 # Common Setup Notes
