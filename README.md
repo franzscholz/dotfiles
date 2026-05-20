@@ -1,3 +1,5 @@
+[![Ansible CI](https://github.com/franzscholz/dotfiles/actions/workflows/ansible.yml/badge.svg)](https://github.com/franzscholz/dotfiles/actions/workflows/ansible.yml)
+
 # dotfiles
 Configuration files (using [`chezmoi`](https://www.chezmoi.io)) for my working environment.
 
