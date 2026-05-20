@@ -1,0 +1,41 @@
+---
+# Packages translated from Brewfile for common Linux distributions.
+# Review names for your distribution (Debian/Ubuntu may need different package names).
+packages:
+  - xz
+  - ansible
+  - bash-completion
+  - bpytop
+  - bzip2
+  - chezmoi
+  - cmake
+  - fastfetch
+  - fswatch
+  - git
+  - git-filter-repo
+  - golang
+  - iperf3
+  - lftp
+  - libiconv
+  - libzip
+  - mercurial
+  - nano
+  - neovim
+  - ninja-build
+  - nmap
+  - oh-my-posh
+  - pandoc
+  - php
+  - pkgconf
+  - pwgen
+  - pyenv
+  - qemu
+  - rustc
+  - libsdl2-2.0-0
+  - subversion
+  - watch
+  - wireguard-tools
+  - zig
+  - zlib1g
+  - zsh
+  - zsh-completions

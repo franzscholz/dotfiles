@@ -53,6 +53,19 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 exec zsh
 ```
 
+# Setup
+
+On FreeBSD:
+
+```[shell]
+sudo pkg install py311-ansible chezmoi
+chezmoi init git@github.com:franzscholz/dotfiles.git
+chezmoi diff
+chezmoi apply -v
+chezmoi cd
+ansible-playbook ansible/setup.yml -K
+```
+
 # Common Setup Notes
 
 Setup should be as follows:

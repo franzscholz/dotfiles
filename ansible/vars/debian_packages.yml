@@ -1,0 +1,40 @@
+---
+# Debian package names — verify for your Debian release
+packages:
+  - xz-utils
+  - ansible
+  - bash-completion
+  - bpytop
+  - bzip2
+  - chezmoi
+  - cmake
+  - fastfetch
+  - fswatch
+  - git
+  - git-filter-repo
+  - golang-go
+  - iperf3
+  - lftp
+  - libzip-dev
+  - mercurial
+  - nano
+  - neovim
+  - ninja-build
+  - nmap
+  - oh-my-posh
+  - pandoc
+  - php
+  - pkgconf
+  - pwgen
+  - pyenv
+  - qemu
+  - rustc
+  - cargo
+  - libsdl2-2.0-0
+  - subversion
+  - watch
+  - wireguard-tools
+  - zig
+  - zlib1g
+  - zsh
+  - zsh-completions

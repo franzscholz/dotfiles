@@ -1,0 +1,103 @@
+- name: Local system/user setup
+  hosts: localhost
+  connection: local
+  gather_facts: true
+
+  vars:
+    oh_my_zsh_installer_url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    brewfile_path: "{{ playbook_dir }}/../Brewfile"
+
+  tasks:
+    - name: Normalize distribution name
+      set_fact:
+        distro: >-
+          {%- if ansible_facts.os_family == 'Darwin' -%}
+            darwin
+          {%- elif ansible_facts.os_family == 'FreeBSD' -%}
+            freebsd
+          {%- else -%}
+            {{ ansible_facts.distribution | lower }}
+          {%- endif -%}
+
+    - name: Install Homebrew on macOS
+      become: false
+      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      args:
+        creates: "{{ item }}"
+      loop:
+        - /opt/homebrew/bin/brew
+        - /usr/local/bin/brew
+      when: ansible_facts.os_family == 'Darwin'
+
+    - name: Install macOS packages from Brewfile
+      become: false
+      shell: /bin/bash -lc 'brew bundle install --file "{{ brewfile_path }}"'
+      args:
+        chdir: "{{ playbook_dir }}/.."
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/opt/homebrew/bin:/usr/local/bin"
+      when: ansible_facts.os_family == 'Darwin'
+
+    - name: Load matching packages
+      include_vars:
+        file: "{{ playbook_dir }}/vars/{{ distro }}_packages.yml"
+
+    - name: Show selected package manager and count
+      debug:
+        msg:
+          - "OS family: {{ ansible_facts.os_family }}"
+          - "Distribution: {{ ansible_facts.distribution | default('unknown') }}"
+          - "Package manager: {{ ansible_pkg_mgr | default('unknown') }}"
+          - "Packages to ensure: {{ packages | default([]) | length }}"
+
+    - name: Ensure packages are present
+      become: true
+      package:
+        name: "{{ packages }}"
+        state: present
+      when: packages is defined and packages | length > 0
+      tags: install
+
+    - name: Find installed zsh
+      command: which zsh
+      register: zsh_path_cmd
+      check_mode: false
+      changed_when: false
+      failed_when: false
+
+    - name: Set zsh path
+      set_fact:
+        zsh_target: "{{ zsh_path_cmd.stdout | default('/bin/zsh') }}"
+
+    - name: Ensure current user shell is zsh
+      become: true
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: "{{ zsh_target }}"
+
+    - name: Install oh-my-zsh
+      become: false
+      shell: 'RUNZSH=no CHSH=no sh -c "$(curl -fsSL {{ oh_my_zsh_installer_url }})"'
+      args:
+        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
+    - name: Install oh-my-posh dependencies
+      become: true
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - curl
+        - unzip
+      when: distro in ['freebsd']
+
+    - name: Install oh-my-posh
+      become: false
+      shell: 'curl -s https://ohmyposh.dev/install.sh | bash -s --'
+      args:
+        creates: "{{ ansible_env.HOME }}/.local/bin/oh-my-posh"
+      when: distro in ['freebsd']
+
+    - name: Report setup result
+      debug:
+        msg: "Setup completed for {{ ansible_facts.distribution | default(ansible_facts.os_family) }} ({{ distro }}). zsh is configured as {{ zsh_target }}."

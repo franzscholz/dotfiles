@@ -1,0 +1,35 @@
+---
+# Packages translated from Brewfile for FreeBSD (pkg names). Verify on your system.
+packages:
+  - FreeBSD-xz
+  - py311-ansible
+  - bash
+  - bpytop
+  - FreeBSD-bzip2
+  - chezmoi
+  - cmake
+  - fastfetch
+  - fswatch
+  - git
+  - git-filter-repo
+  - go
+  - iperf3
+  - lftp
+  - libiconv
+  - libzip
+  - mercurial
+  - nano
+  - neovim
+  - ninja
+  - nmap
+  - pkgconf
+  - pwgen
+  - pyenv
+  - qemu
+  - rust
+  - sdl2
+  - subversion
+  - zig
+  - FreeBSD-zlib
+  - zsh
+  - zsh-completions
