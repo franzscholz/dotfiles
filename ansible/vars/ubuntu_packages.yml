@@ -29,7 +29,6 @@ packages:
   - subversion
   - watch
   - wireguard-tools
-  - zig
   - zlib1g
   - zsh
   - zsh-completions
