@@ -1,3 +1,6 @@
+# ~/.zshrc
+# Read for interactive shells
+# Read after .zprofile and before .zlogin (both for login shells only).
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
