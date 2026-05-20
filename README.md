@@ -55,6 +55,14 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 exec zsh
 ```
 
+## Install oh-my-posh fonts
+
+```[shell]
+oh-my-posh font install FiraMono
+```
+
+Configure the terminal to use `FiraCode Nerd Font Mono Regular`.
+
 # Setup
 
 On FreeBSD:
