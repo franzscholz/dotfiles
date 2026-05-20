@@ -6,7 +6,6 @@ packages:
   - bash-completion
   - bpytop
   - bzip2
-  - chezmoi
   - cmake
   - fastfetch
   - fswatch
