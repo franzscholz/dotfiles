@@ -27,7 +27,6 @@ packages:
   - pkgconf
   - pwgen
   - pyenv
-  - qemu
   - rustc
   - cargo
   - libsdl2-2.0-0

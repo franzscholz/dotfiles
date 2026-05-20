@@ -23,7 +23,6 @@ packages:
   - php
   - pkgconf
   - pwgen
-  - qemu
   - rustc
   - cargo
   - libsdl2-2.0-0

@@ -25,7 +25,6 @@ packages:
   - pkgconf
   - pwgen
   - pyenv
-  - qemu
   - rust
   - sdl2
   - subversion
