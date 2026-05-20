@@ -1,0 +1,45 @@
+name: Ansible CI
+
+on:
+  push:
+    paths:
+      - 'ansible/**'
+      - 'Brewfile'
+      - 'README.md'
+  pull_request:
+    paths:
+      - 'ansible/**'
+      - 'Brewfile'
+      - 'README.md'
+
+jobs:
+  validate:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Ansible and lint dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ansible ansible-lint
+
+      - name: Lint Ansible playbooks
+        run: ansible-lint ansible/setup.yml ansible/install_packages.yml
+
+      - name: Syntax-check Ansible playbooks
+        run: |
+          ansible-playbook --syntax-check ansible/setup.yml
+          ansible-playbook --syntax-check ansible/install_packages.yml
+
+      - name: Dry-run install_packages.yml on Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: ansible-playbook ansible/install_packages.yml --check

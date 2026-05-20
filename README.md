@@ -65,6 +65,10 @@ chezmoi apply -v
 ansible-playbook $(chezmoi source-path)/ansible/setup.yml -K
 ```
 
+## Continuous integration
+
+This repository includes a GitHub Actions workflow in `.github/workflows/ansible.yml` that validates the Ansible playbooks with `ansible-lint`, syntax checks, and a dry-run of `ansible/install_packages.yml`.
+
 # Common Setup Notes
 
 Setup should be as follows:
