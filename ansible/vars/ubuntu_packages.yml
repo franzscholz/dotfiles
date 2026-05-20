@@ -7,7 +7,6 @@ packages:
   - bpytop
   - bzip2
   - cmake
-  - fastfetch
   - fswatch
   - git
   - git-filter-repo
