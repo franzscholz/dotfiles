@@ -19,7 +19,6 @@ packages:
   - neovim
   - ninja-build
   - nmap
-  - oh-my-posh
   - pandoc
   - php
   - pkgconf
