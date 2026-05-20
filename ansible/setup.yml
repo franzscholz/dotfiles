@@ -9,7 +9,7 @@
 
   tasks:
     - name: Normalize distribution name
-      set_fact:
+      ansible.builtin.set_fact:
         distro: >-
           {%- if ansible_facts.os_family == 'Darwin' -%}
             darwin
@@ -21,7 +21,10 @@
 
     - name: Install Homebrew on macOS
       become: false
-      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       args:
         creates: "{{ item }}"
       loop:
@@ -29,22 +32,37 @@
         - /usr/local/bin/brew
       when: ansible_facts.os_family == 'Darwin'
 
-    - name: Install macOS packages from Brewfile
+    - name: Check if Brewfile would change anything (dry-run)
       become: false
-      shell: /bin/bash -lc 'brew bundle install --file "{{ brewfile_path }}"'
+      ansible.builtin.command:
+        cmd: 'brew bundle check --file "{{ brewfile_path }}"'
       args:
         chdir: "{{ playbook_dir }}/.."
+      register: brew_check
+      ignore_errors: true
+      changed_when: brew_check.rc != 0
       environment:
         PATH: "{{ ansible_env.PATH }}:/opt/homebrew/bin:/usr/local/bin"
       when: ansible_facts.os_family == 'Darwin'
 
+    - name: Install macOS packages from Brewfile
+      become: false
+      ansible.builtin.command:
+        cmd: 'brew bundle install --file "{{ brewfile_path }}"'
+      args:
+        chdir: "{{ playbook_dir }}/.."
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/opt/homebrew/bin:/usr/local/bin"
+      changed_when: brew_check.rc != 0
+      when: ansible_facts.os_family == 'Darwin' and brew_check.rc != 0
+
     - name: Load matching packages
-      include_vars:
+      ansible.builtin.include_vars:
         file: "{{ playbook_dir }}/vars/{{ distro }}_packages.yml"
       when: distro in ['freebsd', 'ubuntu', 'debian', 'gentoo']
 
     - name: Show selected package manager and count
-      debug:
+      ansible.builtin.debug:
         msg:
           - "OS family: {{ ansible_facts.os_family }}"
           - "Distribution: {{ ansible_facts.distribution | default('unknown') }}"
@@ -54,38 +72,44 @@
 
     - name: Ensure packages are present
       become: true
-      package:
+      ansible.builtin.package:
         name: "{{ packages }}"
         state: present
       when: distro in ['freebsd', 'ubuntu', 'debian', 'gentoo'] and packages is defined and packages | length > 0
       tags: install
 
     - name: Find installed zsh
-      command: which zsh
+      ansible.builtin.command: which zsh
       register: zsh_path_cmd
       check_mode: false
       changed_when: false
       failed_when: false
+      when: distro != 'darwin'
 
     - name: Set zsh path
-      set_fact:
+      ansible.builtin.set_fact:
         zsh_target: "{{ zsh_path_cmd.stdout | default('/bin/zsh') }}"
+      when: distro != 'darwin'
 
     - name: Ensure current user shell is zsh
       become: true
-      user:
+      ansible.builtin.user:
         name: "{{ ansible_user_id }}"
         shell: "{{ zsh_target }}"
+      when: distro != 'darwin'
 
     - name: Install oh-my-zsh
       become: false
-      shell: 'RUNZSH=no CHSH=no sh -c "$(curl -fsSL {{ oh_my_zsh_installer_url }})"'
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          RUNZSH=no CHSH=no sh -c "$(curl -fsSL {{ oh_my_zsh_installer_url }})"
       args:
         creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
     - name: Install oh-my-posh dependencies
       become: true
-      package:
+      ansible.builtin.package:
         name: "{{ item }}"
         state: present
       loop:
@@ -95,11 +119,18 @@
 
     - name: Install oh-my-posh
       become: false
-      shell: 'curl -s https://ohmyposh.dev/install.sh | bash -s --'
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail && curl -s https://ohmyposh.dev/install.sh | bash -s --'
       args:
         creates: "{{ ansible_env.HOME }}/.local/bin/oh-my-posh"
       when: distro in ['freebsd']
 
     - name: Report setup result
-      debug:
-        msg: "Setup completed for {{ ansible_facts.distribution | default(ansible_facts.os_family) }} ({{ distro }}). zsh is configured as {{ zsh_target }}."
+      ansible.builtin.debug:
+        msg: "Setup completed for {{ ansible_facts.distribution | default(ansible_facts.os_family) }} ({{ distro }})."
+
+    - name: Report setup result
+      ansible.builtin.debug:
+        msg: "zsh is configured as {{ zsh_target }}."
+      when: zsh_target is defined

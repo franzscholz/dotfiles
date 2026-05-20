@@ -2,19 +2,19 @@
 - name: Ensure packages from OS-specific lists
   hosts: localhost
   connection: local
-  gather_facts: yes
+  gather_facts: true
 
   tasks:
     - name: Determine distribution and OS family
-      set_fact:
+      ansible.builtin.set_fact:
         distro: "{{ (ansible_facts['distribution'] | default(ansible_facts['os_family'])) | lower }}"
 
     - name: Load matching packages
-      include_vars:
+      ansible.builtin.include_vars:
         file: "{{ playbook_dir }}/vars/{{ distro }}_packages.yml"
 
     - name: Show selected package manager and count
-      debug:
+      ansible.builtin.debug:
         msg:
           - "OS family: {{ ansible_facts.os_family }}"
           - "Distribution: {{ ansible_facts.distribution | default('unknown') }}"
@@ -23,12 +23,12 @@
 
     - name: Ensure packages are present
       become: true
-      package:
+      ansible.builtin.package:
         name: "{{ packages }}"
         state: present
       when: packages is defined and packages | length > 0
       tags: install
 
     - name: Note about skipped items
-      debug:
-        msg: "This playbook only installs package-manager packages from the distribution-specific lists. casks, vscode extensions and go modules from the Brewfile are not handled."
+      ansible.builtin.debug:
+        msg: "This playbook only installs package-manager packages from the distribution-specific lists. casks, vscode extensions and go modules from the Brewfile are not handled. Please run 'chezmoi apply' to ensure those are installed." # noqa: yaml[line-length]
