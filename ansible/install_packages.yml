@@ -31,4 +31,4 @@
 
     - name: Note about skipped items
       ansible.builtin.debug:
-        msg: "This playbook only installs package-manager packages from the distribution-specific lists. casks, vscode extensions and go modules from the Brewfile are not handled. Please run 'chezmoi apply' to ensure those are installed." # noqa: yaml[line-length]
+        msg: "This playbook only installs package-manager packages from the distribution-specific lists. casks, vscode extensions and go modules from the Brewfile are not handled." # noqa: yaml[line-length]
