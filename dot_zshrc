@@ -117,5 +117,10 @@ if type oh-my-posh &>/dev/null ; then
 fi
 
 # Run fastfetch
-fastfetch
-
+if [[ -o interactive ]]; then
+  if [[ "$SHLVL" == 1 ]]; then
+    if type fastfetch &>/dev/null ; then
+      fastfetch
+    fi
+  fi
+fi
