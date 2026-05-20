@@ -31,4 +31,4 @@ packages:
   - wireguard-tools
   - zlib1g
   - zsh
-  - zsh-completions
+ 
