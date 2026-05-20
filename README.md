@@ -62,10 +62,24 @@ sudo pkg install py311-ansible chezmoi
 chezmoi init git@github.com:franzscholz/dotfiles.git
 chezmoi diff
 chezmoi apply -v
-ansible-playbook $(chezmoi source-path)/ansible/setup.yml -K
+ansible-playbook -K $(chezmoi source-path)/ansible/setup.yml
+exec zsh
 ```
 
-## Continuous integration
+On Ubuntu:
+
+```[shell]
+export ANSIBLE_BECOME_EXE=sudo.ws
+sudo apt install curl git ansible
+sh -c "$(curl -fsLS https://get.chezmoi.io)"
+$HOME/bin/chezmoi init git@github.com:franzscholz/dotfiles.git
+$HOME/bin/chezmoi diff
+$HOME/bin/chezmoi apply -v
+ansible-playbook -K $($HOME/bin/chezmoi source-path)/ansible/setup.yml
+exec zsh
+```
+
+# Continuous integration
 
 This repository includes a GitHub Actions workflow in `.github/workflows/ansible.yml` that validates the Ansible playbooks with `ansible-lint`, syntax checks, and a dry-run of `ansible/install_packages.yml`.
 

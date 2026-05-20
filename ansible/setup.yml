@@ -115,16 +115,16 @@
       loop:
         - curl
         - unzip
-      when: distro in ['freebsd']
+      when: distro in ['freebsd', 'ubuntu']
 
     - name: Install oh-my-posh
       become: false
       ansible.builtin.shell:
         cmd: |
-          set -o pipefail && curl -s https://ohmyposh.dev/install.sh | bash -s --'
+          set -o pipefail && curl -s https://ohmyposh.dev/install.sh | bash -s --
       args:
         creates: "{{ ansible_env.HOME }}/.local/bin/oh-my-posh"
-      when: distro in ['freebsd']
+      when: distro in ['freebsd', 'ubuntu']
 
     - name: Report setup result
       ansible.builtin.debug:
