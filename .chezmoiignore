@@ -6,7 +6,7 @@ Makefile
 vscode_settings.json
 Brewfile
 linux_packages.txt
-{{- if ne .chezmoi.os "linux" }}
+{{- if and (ne .chezmoi.os "linux") (ne .chezmoi.os "freebsd") }}
 .config
 .config/Code
 .config/Code/User
