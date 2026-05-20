@@ -23,7 +23,6 @@ packages:
   - php
   - pkgconf
   - pwgen
-  - pyenv
   - qemu
   - rustc
   - cargo
