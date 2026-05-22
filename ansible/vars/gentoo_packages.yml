@@ -1,39 +1,33 @@
 ---
 # Gentoo package atoms. Verify and adjust USE flags as needed.
 packages:
-  - app-arch/xz
-  - dev-python/ansible
+  - app-admin/ansible
+  - app-admin/ansible-lint
   - app-shells/bash-completion
   - sys-process/bpytop
   - app-arch/bzip2
-  - chezmoi
-  - dev-util/cmake
-  - sys-apps/fastfetch
+  - dev-build/cmake
+  - app-misc/fastfetch
   - sys-fs/fswatch
   - dev-vcs/git
   - dev-vcs/git-filter-repo
   - dev-lang/go
-  - net-analyzer/iperf3
+  - net-misc/iperf
   - net-ftp/lftp
-  - sys-libs/libzip
+  - dev-libs/libzip
   - dev-vcs/mercurial
   - app-editors/nano
   - app-editors/neovim
-  - dev-util/ninja
+  - dev-build/ninja
   - net-analyzer/nmap
-  - oh-my-posh
-  - app-text/pandoc
   - dev-lang/php
-  - sys-devel/pkgconf
-  - sys-auth/pwgen
+  - dev-util/pkgconf
+  - app-admin/pwgen
   - dev-lang/python-exec
-  - app-emulation/qemu
   - dev-lang/rust
   - media-libs/libsdl2
   - dev-vcs/subversion
-  - app-misc/watch
-  - net-misc/wireguard-tools
   - dev-lang/zig
   - sys-libs/zlib
-  - shells/zsh
-  - zsh-completions
+  - app-shells/zsh
+  - app-shells/zsh-completions
